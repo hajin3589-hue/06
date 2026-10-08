@@ -1,24 +1,50 @@
 #include <stdio.h>
 
-void square1(int a)
+int factorial(int n)
 {
-    a = a * a;
+    int i;
+    int res = 1;
+
+    for (i = 1; i <= n; i++)
+    {
+        res = res * i;
+    }
+
+    return res;
 }
 
-int square2(int a)
+int combination(int n, int r)
 {
-    return (a * a);
+    return factorial(n) / (factorial(n-r) * factorial(r));
+}
+
+int get_integer(void)
+{
+    int num;
+
+    printf("input a number: ");
+    scanf("%i", &num);
+
+    return num;
 }
 
 int main(void)
 {
-    int a = 2;
+    int n, r;
+    int result;
 
-    square1(a);
-    printf("a = %i\n", a);
+    n = get_integer();
+    r = get_integer();
 
-    a = square2(a);
-    printf("a = %i\n", a);
+    if (n < 0 || r < 0 || r > n)
+    {
+        printf("Invalid input\n");
+        return 0;
+    }
+
+    result = combination(n, r);
+
+    printf("C(%i, %i) = %i\n", n, r, result);
 
     return 0;
 }
